@@ -62,7 +62,7 @@ var_dump($_GET);
                 </div>
                 <form method="GET">
                     <div class="bg-primary-subtle parametro-text mt-3">
-                        <?php if($length_pass !== NULL ? getPassword($length_pass) : '')?> 
+                        <?php if($length_pass !== NULL ? getPassword($length_pass) : 'Password Non Generata.')?> 
                     </div>
                     <div class="generator bg-white mt-3">
                         <div class="row justify-content-between align-items-center">
