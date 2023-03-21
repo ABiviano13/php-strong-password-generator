@@ -1,3 +1,24 @@
+<?php
+
+    function getPassword(){
+        $alpha_number = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+        $alpha_number_length = strlen($alpha_number) - 1;
+        $password = [];
+
+        for ($i = 0; $i < 8; $i++){
+            $index = rand(0, $alpha_number_length);
+            $password[] = $alpha_number[$index];
+            print(implode($password)); 
+        }
+
+        return $password;
+
+    }
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,7 +58,8 @@
                     <h2 class="text-white mt-3">Genera una password sicura</h2>
                 </div>
                 <div class="bg-primary-subtle parametro-text mt-3">
-                    Nessun Parametro valido inserito.
+                    Nessun Parametro valido inserito.  
+                    <?php getPassword()?>
                 </div>
                 <div class="generator bg-white mt-3">
                     <form action="">
