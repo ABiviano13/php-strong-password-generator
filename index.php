@@ -1,11 +1,14 @@
 <?php
 
-    function getPassword(){
+$length_pass = $_GET['value'];
+var_dump($_GET);
+
+    function getPassword($length_pass){
         $alpha_number = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
         $alpha_number_length = strlen($alpha_number) - 1;
         $password = [];
 
-        for ($i = 0; $i < 8; $i++){
+        for ($i = 0; $i < $length_pass; $i++){
             $index = rand(0, $alpha_number_length);
             $password[] = $alpha_number[$index];
             print(implode($password)); 
@@ -57,35 +60,26 @@
                     <h1 class="text-secondary-emphasis">Strong Password Generator</h1>
                     <h2 class="text-white mt-3">Genera una password sicura</h2>
                 </div>
-                <div class="bg-primary-subtle parametro-text mt-3">
-                    Nessun Parametro valido inserito.  
-                    <?php getPassword()?>
-                </div>
-                <div class="generator bg-white mt-3">
-                    <form action="">
-
+                <form method="GET">
+                    <div class="bg-primary-subtle parametro-text mt-3">
+                        <?php if($length_pass !== NULL ? getPassword($length_pass) : '')?> 
+                    </div>
+                    <div class="generator bg-white mt-3">
                         <div class="row justify-content-between align-items-center">
                             <div class="col">
                                 Lunghezza Password:
                             </div>
                             <div class="col">
-                                <input type="number">
+                                <input type="number" name="value">
                             </div>
                         </div>
-                        <div class="row justify-content-between align-items-center">
-                            <div class="col">
-                                Consenti ripetizioni di uno o più caratteri:
-                            </div>
-                            <div class="col">
-                                <input type="radio" name="positive-answer" id="positive-answer">
-                                <label for="positive-answer">Si</label> <br>
-                                <input type="radio" name="negative-answer" id="negative-answer">
-                                <label for="negative-answer">No</label>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-                </div>
+
+                        <button type="submit" class="btn btn-primary">
+                            Genera
+                        </button>
+                    </div>
+                </form>
+                
             </div>
         </section>
     </main>
