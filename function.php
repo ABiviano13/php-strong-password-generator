@@ -9,6 +9,7 @@ function getPassword($length)
     $chars .= strtoupper($chars);
     $chars .= $numbers;
     $chars .= $simbols;
+    $password = '';
 
     for($i = 0; $i < $length; $i++) {
 

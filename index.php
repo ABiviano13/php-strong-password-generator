@@ -1,23 +1,16 @@
 <?php
 
-$length_pass = $_GET['value'];
+require_once __DIR__ . '/function.php';
+
+$length_pass = isset($_GET['length']) ? $_GET['length'] : null;
 var_dump($_GET);
 
-    function getPassword($length_pass){
-        $alpha_number = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
-        $alpha_number_length = strlen($alpha_number) - 1;
-        $password = [];
+if($length_pass !== null && is_numeric($length_pass)) {
 
-        for ($i = 0; $i < $length_pass; $i++){
-            $index = rand(0, $alpha_number_length);
-            $password[] = $alpha_number[$index];
-            print(implode($password)); 
-        }
+    $length_pass = intval($length_pass);
+    $password = getPassword($length_pass);
 
-        return $password;
-
-    }
-
+}
 
 ?>
 
@@ -50,6 +43,11 @@ var_dump($_GET);
         form .btn{
             margin-top: 35px;
         }
+
+        .btn{
+            background-color: #001732;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -60,9 +58,16 @@ var_dump($_GET);
                     <h1 class="text-secondary-emphasis">Strong Password Generator</h1>
                     <h2 class="text-white mt-3">Genera una password sicura</h2>
                 </div>
-                <form method="GET">
+                <form action='' method="GET">
                     <div class="bg-primary-subtle parametro-text mt-3">
-                        <?php if($length_pass !== NULL ? getPassword($length_pass) : 'Password Non Generata.')?> 
+                        <?php
+                        if(isset($password)) {
+                            ?>
+                            La tua password è la seguente =
+                            <?php
+                        }
+                        ?>
+                        <?php echo isset($password) ? $password : 'Password Non Generata.'; ?> 
                     </div>
                     <div class="generator bg-white mt-3">
                         <div class="row justify-content-between align-items-center">
@@ -70,13 +75,11 @@ var_dump($_GET);
                                 Lunghezza Password:
                             </div>
                             <div class="col">
-                                <input type="number" name="value">
+                                <input type="number" name="length" placeholder="0" min="6" max="30">
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">
-                            Genera
-                        </button>
+                        <input type="submit" value="Genera" class="btn">
                     </div>
                 </form>
                 
