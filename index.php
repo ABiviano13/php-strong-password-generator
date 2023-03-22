@@ -3,7 +3,7 @@
 require_once __DIR__ . '/function.php';
 
 $length_pass = isset($_GET['length']) ? $_GET['length'] : null;
-var_dump($_GET);
+// var_dump($_GET);
 
 if($length_pass !== null && is_numeric($length_pass)) {
 
